@@ -1,0 +1,13 @@
+{
+    "If Statement": {
+      "prefix": ["if"],
+      "body": ["if ${0:true} then", "\t${1:skip}", "else", "\t${1:skip}", "fi"],
+      "description": "If statement skeleton."
+    },
+    "While Statement": {
+      "prefix": ["while"],
+      "body": ["while ${0:true} do", "\t${1:skip}", "done"],
+      "description": "While statement skeleton."
+    }
+  }
+  

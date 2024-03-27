@@ -1,0 +1,168 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "WACC Programming Language",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#numerics"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#types"
+        },
+        {
+            "include": "#separators"
+        },
+        {
+            "include": "#reserved-words"
+        },
+        {
+            "include": "#ctrl-statements"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#variables"
+        },
+        {
+            "include": "#strings"
+        },
+		{
+			"include": "#functions"
+		}
+    ],
+    "repository": {
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control",
+                    "match": "\\b(if|then|else|fi|while|do|done|return|exit|begin|end|is|call|skip|callm)\\b"
+                },
+                {
+                    "name": "keyword.operator",
+                    "match": "=|\\+|\\-|\\*|/|%|len|ord|chr|<|<=|>|>=|!=|==|!|&&|\\|\\|"
+                }
+            ]
+        },
+        "types": {
+            "patterns": [
+                {
+                    "name": "storage.modifier",
+                    "match": "\\b(private|protected|public)\\b"
+                },
+                {
+                    "name": "storage.type.pair.nested",
+                    "match": "pair\\s*\\(\\s*(int|bool|char|string|pair)\\s*,\\s*(int|bool|char|string|pair)\\s*\\)\\s*",
+					"captures": {
+						"1": { "name": "storage.type" },
+						"2": { "name": "storage.type" }
+					}
+                },
+                {
+                    "name": "storage.type.int",
+                    "match": "\\bint\\b"
+                },
+                {
+                    "name": "storage.type.string",
+                    "match": "\\bstring\\b"
+                },
+                {
+                    "name": "storage.type.char",
+                    "match": "\\bchar\\b"
+                },
+                {
+                    "name": "storage.type.bool.base",
+                    "match": "\\bbool\\b"
+                },
+                {
+                    "name": "storage.type.pair.base",
+                    "match": "\\bpair\\b"
+                },
+                {
+                    "name": "storage.type.void",
+                    "match": "\\bvoid\\b"
+                },
+                {
+                    "name": "storage.type.class",
+                    "match": "\\bclass\\b"
+                }
+            ]
+        },
+        "reserved-words": {
+            "match": "\\b(read|print|println|fst|snd|newpair|field|construct)\\b",
+            "name": "entity.name.function.member"
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.single",
+                    "begin": "'",
+                    "end": "'",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape",
+                            "match": "\\\\(?:[0btnfr]|\\['\"\\])"
+                        }
+                    ]
+                }
+            ]
+        },
+        "numerics": {
+            "name": "constant.numeric",
+            "match": "(?<!\\w)([+-]?\\d+)\\b"
+        },
+        "constants": {
+            "name": "constant.language",
+            "match": "\\b(true|false|null)\\b"
+        },
+        "comments": {
+            "name": "comment.line.number-sign",
+            "match": "#.*$"
+        },
+		"functions": {
+			"patterns": [
+				{
+					"match": "\\b\\s*([A-Za-z_][A-Za-z0-9_]*)\\s*\\(",
+                    "name": "meta.function",
+					"captures": {
+						"1": { "name": "entity.name.function" }
+					}
+				}
+			]
+		}, 
+        "separators": {
+            "patterns": [
+                {
+                    "name": "punctuation.separator.semicolon",
+                    "match": ";"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "name": "variable.language",
+                    "match": "\\b(this|super)\\b"
+                }
+
+            ]
+        }
+    },
+    "scopeName": "source.wacc"
+}
